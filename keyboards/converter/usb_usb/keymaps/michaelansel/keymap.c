@@ -7,6 +7,7 @@
 #define SYM 3
 
 #define BSPC_SYM LT(SYM, KC_BSPC)
+#define DEL_NAV LT(NAV, KC_DEL)
 
 // Hammerspoon Triggers
 #define HS_WARP HYPR(KC_A) // Launch warpd
@@ -70,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,                                                                                                 KC_RSFT,   KC_RGUI,   KC_RALT,   KC_RCTL,
                                                            MO(NAV),   KC_LALT,                                                     KC_RGUI,   KC_RCTL,
                                                                       KC_HOME,                                                     KC_PGUP,
-                                                BSPC_SYM,  KC_DEL,    KC_END,                                                      KC_PGDN,   KC_ENTER,  KC_SPC
+                                                BSPC_SYM,  DEL_NAV,    KC_END,                                                      KC_PGDN,   KC_ENTER,  KC_SPC
   ),
 
   [NAV] = LAYOUT_kinesis(
@@ -82,7 +83,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,                                                                                                 KC_RSFT,   KC_RGUI,   KC_RALT,   KC_RCTL,
                                                            _LAYER_,  XXXXXXX,                                                      XXXXXXX,   XXXXXXX,
                                                                      XXXXXXX,                                                      XXXXXXX,
-                                                XXXXXXX,   XXXXXXX,  XXXXXXX,                                                      XXXXXXX,   XXXXXXX,  XXXXXXX
+                                                XXXXXXX,   _LAYER_,  XXXXXXX,                                                      XXXXXXX,   XXXXXXX,  XXXXXXX
   ),
 
   [SYM] = LAYOUT_kinesis(
