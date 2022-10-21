@@ -17,7 +17,7 @@
 #define HS_CODE HYPR(KC_F) // Launch VS Code
 #define HS_PTAB HYPR(KC_G) // Previous Tab
 #define HS_NTAB HYPR(KC_H) // Next Tab
-#define HS_NSCR HYPR(KC_I) // Switch Monitor Focus
+#define HS_SCRN HYPR(KC_I) // Switch Monitor Focus
 
 /****************************************************************************************************
 *
@@ -76,7 +76,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [NAV] = LAYOUT_kinesis(
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,         XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-    XXXXXXX,   XXXXXXX,   HS_NSCR,   XXXXXXX,   HS_WARP,   XXXXXXX,                                                                           KC_ESC,    HS_PTAB,   KC_TAB,    HS_NTAB,   KC_ESC,   XXXXXXX,
+    XXXXXXX,   XXXXXXX,   HS_SCRN,   XXXXXXX,   HS_WARP,   XXXXXXX,                                                                           KC_ESC,    HS_PTAB,   KC_TAB,    HS_NTAB,   KC_ESC,   XXXXXXX,
     XXXXXXX,   KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,   XXXXXXX,                                                                           KC_LEFT,   KC_DOWN,   KC_UP,     KC_RIGHT,  XXXXXXX,  XXXXXXX,
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           KC_HOME,   KC_PGDN,   KC_PGUP,   KC_END,    XXXXXXX,  XXXXXXX,
                KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,                                                                                                 KC_RSFT,   KC_RGUI,   KC_RALT,   KC_RCTL,
