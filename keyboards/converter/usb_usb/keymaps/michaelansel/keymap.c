@@ -81,7 +81,7 @@ void lthmb_finished(qk_tap_dance_state_t *state, void *user_data);
 void lthmb_reset(qk_tap_dance_state_t *state, void *user_data);
 
 // #define LTHMB TD(TD_LTHMB)
-#define LTHMB BSPC_SYM
+#define LTHMB MO(SYM)
 
 /****************************************************************************************************
 *
@@ -141,9 +141,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [THMB] = LAYOUT_kinesis(
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,         XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   KC_RSFT,   KC_RGUI,   KC_RALT,   KC_RCTL,   XXXXXXX,
-    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
+    XXXXXXX,   _______,   _______,   _______,   _______,   _______,                                                                           _______,   _______,   _______,   _______,   _______,   XXXXXXX,
+    XXXXXXX,   _______,   _______,   _______,   _______,   _______,                                                                           _______,   _______,   _______,   _______,   _______,   _______,
+    XXXXXXX,   _______,   _______,   _______,   _______,   _______,                                                                           _______,   _______,   _______,   _______,   _______,   _______,
                XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                                                 XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
                                                            XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,
                                                                       XXXXXXX,                                                     XXXXXXX,
@@ -171,7 +171,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                _______,   _______,   _______,   _______,                                                                                                 _______,   _______,   _______,   _______,
                                                            XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,
                                                                       XXXXXXX,                                                     XXXXXXX,
-                                                _ENTRY_,   XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,   XXXXXXX
+                                                _ENTRY_,   XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,   SPC_THMB
   ),
 
   [UNI] = LAYOUT_kinesis(
