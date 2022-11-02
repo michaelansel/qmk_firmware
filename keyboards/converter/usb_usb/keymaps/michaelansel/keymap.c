@@ -71,7 +71,8 @@ typedef struct {
 
 // Tap dance enums
 enum {
-    TD_LTHMB
+    TD_LTHMB,
+    TD_CUT_COPY_PASTE,
 };
 
 td_state_t cur_dance(qk_tap_dance_state_t *state);
@@ -82,6 +83,8 @@ void lthmb_reset(qk_tap_dance_state_t *state, void *user_data);
 
 // #define LTHMB TD(TD_LTHMB)
 #define LTHMB MO(SYM)
+
+#define CPY_PST TD(TD_CUT_COPY_PASTE)
 
 /****************************************************************************************************
 *
@@ -133,45 +136,33 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSFT,   KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                                                                              KC_N,      KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSFT,
                XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                                                 XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
               //  KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,                                                                                                 KC_RSFT,   KC_RGUI,   KC_RALT,   KC_RCTL,
-                                                           OSL(UNI),  XXXXXXX,                                                     XXXXXXX,   XXXXXXX,
-                                                                      XXXXXXX,                                                     XXXXXXX,
-                                                LTHMB,     MO(NAV),   KC_BTN1,                                                     XXXXXXX,   KC_ENTER,  SPC_THMB
-  ),
-
-  [THMB] = LAYOUT_kinesis(
-    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,         XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-    XXXXXXX,   _______,   _______,   _______,   _______,   _______,                                                                           _______,   _______,   _______,   _______,   _______,   XXXXXXX,
-    XXXXXXX,   _______,   _______,   _______,   _______,   _______,                                                                           _______,   _______,   _______,   _______,   _______,   _______,
-    XXXXXXX,   _______,   _______,   _______,   _______,   _______,                                                                           _______,   _______,   _______,   _______,   _______,   _______,
-               XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                                                 XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-                                                           XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,
-                                                                      XXXXXXX,                                                     XXXXXXX,
-                                                KC_BSPC,   KC_DEL,    XXXXXXX,                                                     XXXXXXX,   XXXXXXX,   _ENTRY_
+                                                           OSL(UNI),  HS_BTN1,                                                     XXXXXXX,   XXXXXXX,
+                                                                      HS_SCUP,                                                     XXXXXXX,
+                                                LTHMB,     MO(NAV),   HS_SCDN,                                                     XXXXXXX,   KC_ENTER,   KC_SPC
   ),
 
   [NAV] = LAYOUT_kinesis(
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,         XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,  XXXXXXX,
-    XXXXXXX,   XXXXXXX,   HS_SCRN,   XXXXXXX,   HS_WARP,   XXXXXXX,                                                                           XXXXXXX,   HS_PTAB,   KC_ESC,    HS_NTAB,   XXXXXXX,  XXXXXXX,
+    XXXXXXX,   XXXXXXX,   HS_SCRN,   XXXXXXX,   HS_WARP,   XXXXXXX,                                                                           XXXXXXX,   HS_PTAB,   XXXXXXX,   HS_NTAB,   XXXXXXX,  XXXXXXX,
     XXXXXXX,   KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,   XXXXXXX,                                                                           KC_LEFT,   KC_DOWN,   KC_UP,     KC_RIGHT,  XXXXXXX,  XXXXXXX,
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           KC_HOME,   KC_PGDN,   KC_PGUP,   KC_END,    XXXXXXX,  XXXXXXX,
                XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                                                 HS_SCDN,   HS_SCUP,   HS_BTN1,   XXXXXXX,
                                                            XXXXXXX,  XXXXXXX,                                                      XXXXXXX,   XXXXXXX,
                                                                      XXXXXXX,                                                      XXXXXXX,
-                                                XXXXXXX,   _ENTRY_,  XXXXXXX,                                                      XXXXXXX,   XXXXXXX,  XXXXXXX
+                                                XXXXXXX,   _ENTRY_,  XXXXXXX,                                                      XXXXXXX,   S(KC_ENTER),   XXXXXXX
   ),
 
   [SYM] = LAYOUT_kinesis(
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,         XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           KC_CIRC,   KC_AMPR,   KC_ASTR,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-    XXXXXXX,   KC_EXLM,   KC_AT,     KC_HASH,   KC_DLR,    KC_PERC,                                                                           KC_ESC,    KC_LCBR,   KC_TAB,    KC_RCBR,   XXXXXXX,   XXXXXXX,
-    XXXXXXX,   KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,   XXXXXXX,                                                                           KC_PIPE,   KC_LPRN,   KC_MINUS,  KC_RPRN,   XXXXXXX,   XXXXXXX,
-    XXXXXXX,   KC_BSLS,   XXXXXXX,   XXXXXXX,   XXXXXXX,   KC_TILD,                                                                           KC_GRV,    KC_LBRC,   KC_UNDS,   KC_RBRC,   XXXXXXX,   XXXXXXX,
+    XXXXXXX,   KC_EXLM,   KC_AT,     KC_HASH,   KC_DLR,    KC_PERC,                                                                           KC_ESC,    KC_LCBR,   KC_TAB,    KC_RCBR,   KC_BSPC,   KC_DEL,
+    XXXXXXX,   KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,   KC_EQL,                                                                            KC_PIPE,   KC_LPRN,   KC_MINUS,  KC_RPRN,   KC_COLN,   XXXXXXX,
+    XXXXXXX,   KC_BSLS,   KC_LT,     CPY_PST,   KC_GT,     KC_TILD,                                                                           KC_GRV,    KC_LBRC,   KC_UNDS,   KC_RBRC,   XXXXXXX,   XXXXXXX,
                _______,   _______,   _______,   _______,                                                                                                 _______,   _______,   _______,   _______,
-                                                           XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,
+                                                           XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   KC_DEL,
                                                                       XXXXXXX,                                                     XXXXXXX,
-                                                _ENTRY_,   XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,   SPC_THMB
+                                                _ENTRY_,   XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   G(KC_ENTER),   KC_BSPC
   ),
 
   [UNI] = LAYOUT_kinesis(
@@ -381,5 +372,6 @@ void lthmb_reset(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 qk_tap_dance_action_t tap_dance_actions[] = {
-    [TD_LTHMB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lthmb_finished, lthmb_reset)
+    [TD_LTHMB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lthmb_finished, lthmb_reset),
+    [TD_CUT_COPY_PASTE] = ACTION_TAP_DANCE_DOUBLE(G(KC_C), G(KC_V)),
 };
