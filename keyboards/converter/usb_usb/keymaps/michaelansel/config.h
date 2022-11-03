@@ -11,6 +11,3 @@
 // Require very long hold to trigger mod-tap keys (but with permissive hold, should still enable fast combos)
 #define IGNORE_MOD_TAP_INTERRUPT
 #define TAPPING_TERM_PER_KEY
-
-#define MK_KINETIC_SPEED
-

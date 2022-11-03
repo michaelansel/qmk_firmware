@@ -6,31 +6,26 @@
 #define NAV 2 // Navigation/Focus control
 #define SYM 3 // Symbols
 #define UNI 4 // Universal/media keys
-#define THMB 5 // Activate basic functions of left thumb keys
 
-#define BSPC_SYM LT(SYM, KC_BSPC)
-#define DEL_NAV LT(NAV, KC_DEL)
-#define SPC_THMB LT(THMB, KC_SPC)
-
-// Mod-tap keys
+// Home row mods
 #if 1
-#define MT_A     LCTL_T(KC_A)
-#define MT_S     LALT_T(KC_S)
-#define MT_D     LGUI_T(KC_D)
-#define MT_F     LSFT_T(KC_F)
-#define MT_J     RSFT_T(KC_J)
-#define MT_K     RGUI_T(KC_K)
-#define MT_L     RALT_T(KC_L)
-#define MT_SCLN  RCTL_T(KC_SCLN)
+#define HR_A     LCTL_T(KC_A)
+#define HR_S     LALT_T(KC_S)
+#define HR_D     LGUI_T(KC_D)
+#define HR_F     LSFT_T(KC_F)
+#define HR_J     RSFT_T(KC_J)
+#define HR_K     RGUI_T(KC_K)
+#define HR_L     RALT_T(KC_L)
+#define HR_SCLN  RCTL_T(KC_SCLN)
 #else
-#define MT_A     KC_A
-#define MT_S     KC_S
-#define MT_D     KC_D
-#define MT_F     KC_F
-#define MT_J     KC_J
-#define MT_K     KC_K
-#define MT_L     KC_L
-#define MT_SCLN  KC_SCLN
+#define HR_A     KC_A
+#define HR_S     KC_S
+#define HR_D     KC_D
+#define HR_F     KC_F
+#define HR_J     KC_J
+#define HR_K     KC_K
+#define HR_L     KC_L
+#define HR_SCLN  KC_SCLN
 #endif
 
 // Hammerspoon Triggers
@@ -49,6 +44,7 @@
 #define HS_SCDN HYPR(KC_M) // Scroll Down
 #define HS_SCUP HYPR(KC_N) // Scroll Up
 #define HS_BTN1 HYPR(KC_O) // Click Mouse Button 1
+#define HS_MCTR HYPR(KC_P) // Move mouse to the center of the screen
 // TODO UNI-r left mouse click for selecting whatever window is already under the mouse (shortcut for single action in warpd)
 
 
@@ -132,7 +128,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_ESC,    KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     KC_F6,     KC_F7,     KC_F8,           KC_F9,     KC_F10,    KC_F11,    KC_F12,    XXXXXXX,   XXXXXXX,   QK_BOOT,
     KC_EQL,    KC_1,      KC_2,      KC_3,      KC_4,      KC_5,                                                                              KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_MINS,
     KC_TAB,    KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,                                                                              KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,      KC_BSLS,
-    KC_NO,     MT_A,      MT_S,      MT_D,      MT_F,      KC_G,                                                                              KC_H,      MT_J,      MT_K,      MT_L,      MT_SCLN,   KC_QUOT,
+    KC_NO,     HR_A,      HR_S,      HR_D,      HR_F,      KC_G,                                                                              KC_H,      HR_J,      HR_K,      HR_L,      HR_SCLN,   KC_QUOT,
     KC_LSFT,   KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                                                                              KC_N,      KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSFT,
                XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                                                 XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
               //  KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,                                                                                                 KC_RSFT,   KC_RGUI,   KC_RALT,   KC_RCTL,
@@ -147,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,   XXXXXXX,   HS_SCRN,   XXXXXXX,   HS_WARP,   XXXXXXX,                                                                           XXXXXXX,   HS_PTAB,   XXXXXXX,   HS_NTAB,   XXXXXXX,  XXXXXXX,
     XXXXXXX,   KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,   XXXXXXX,                                                                           KC_LEFT,   KC_DOWN,   KC_UP,     KC_RIGHT,  XXXXXXX,  XXXXXXX,
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           KC_HOME,   KC_PGDN,   KC_PGUP,   KC_END,    XXXXXXX,  XXXXXXX,
-               XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                                                 HS_SCDN,   HS_SCUP,   HS_BTN1,   XXXXXXX,
+               XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                                                 HS_SCDN,   HS_SCUP,   HS_BTN1,   HS_MCTR,
                                                            XXXXXXX,  XXXXXXX,                                                      XXXXXXX,   XXXXXXX,
                                                                      XXXXXXX,                                                      XXXXXXX,
                                                 XXXXXXX,   _ENTRY_,  XXXXXXX,                                                      XXXXXXX,   S(KC_ENTER),   XXXXXXX
@@ -221,14 +217,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-        case MT_A:
-        case MT_S:
-        case MT_D:
-        case MT_F:
-        case MT_J:
-        case MT_K:
-        case MT_L:
-        case MT_SCLN:
+        case HR_A:
+        case HR_S:
+        case HR_D:
+        case HR_F:
+        case HR_J:
+        case HR_K:
+        case HR_L:
+        case HR_SCLN:
             return 250; // This is how long you need to hold for just a bare modifier (e.g. for Cmd-Click); PERMISSIVE_HOLD will allow fast keyboard shortcuts as long as the modifier is released last.
         default:
             return TAPPING_TERM;
