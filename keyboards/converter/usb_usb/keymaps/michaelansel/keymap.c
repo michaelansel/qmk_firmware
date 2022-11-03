@@ -134,7 +134,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               //  KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,                                                                                                 KC_RSFT,   KC_RGUI,   KC_RALT,   KC_RCTL,
                                                            OSL(UNI),  HS_BTN1,                                                     XXXXXXX,   XXXXXXX,
                                                                       HS_SCUP,                                                     XXXXXXX,
-                                                LTHMB,     MO(NAV),   HS_SCDN,                                                     XXXXXXX,   KC_ENTER,   KC_SPC
+                                                LTHMB,     MO(NAV),   HS_SCDN,                                                     XXXXXXX,   KC_ENTER,  KC_SPC
   ),
 
   [NAV] = LAYOUT_kinesis(
@@ -146,7 +146,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                                                 HS_SCDN,   HS_SCUP,   HS_BTN1,   HS_MCTR,
                                                            XXXXXXX,  XXXXXXX,                                                      XXXXXXX,   XXXXXXX,
                                                                      XXXXXXX,                                                      XXXXXXX,
-                                                XXXXXXX,   _ENTRY_,  XXXXXXX,                                                      XXXXXXX,   S(KC_ENTER),   XXXXXXX
+                                                XXXXXXX,   _ENTRY_,  XXXXXXX,                                                      XXXXXXX,   S(KC_ENT), XXXXXXX
   ),
 
   [SYM] = LAYOUT_kinesis(
@@ -158,7 +158,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                _______,   _______,   _______,   _______,                                                                                                 _______,   _______,   _______,   _______,
                                                            XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   KC_DEL,
                                                                       XXXXXXX,                                                     XXXXXXX,
-                                                _ENTRY_,   XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   G(KC_ENTER),   KC_BSPC
+                                                _ENTRY_,   XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   G(KC_ENT), KC_BSPC
   ),
 
   [UNI] = LAYOUT_kinesis(
