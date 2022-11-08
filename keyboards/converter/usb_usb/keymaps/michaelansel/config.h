@@ -11,3 +11,6 @@
 // Require very long hold to trigger mod-tap keys (but with permissive hold, should still enable fast combos)
 #define IGNORE_MOD_TAP_INTERRUPT
 #define TAPPING_TERM_PER_KEY
+
+
+#define ONESHOT_TIMEOUT 1000  /* Time (in ms) before the one shot key is automatically released */

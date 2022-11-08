@@ -6,6 +6,7 @@
 #define NAV 2 // Navigation/Focus control
 #define SYM 3 // Symbols
 #define UNI 4 // Universal/media keys
+#define NUM 5 // Keypad layer / Number pad
 
 // Home row mods
 #if 1
@@ -130,7 +131,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_TAB,    KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,                                                                              KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,      KC_BSLS,
     KC_NO,     HR_A,      HR_S,      HR_D,      HR_F,      KC_G,                                                                              KC_H,      HR_J,      HR_K,      HR_L,      HR_SCLN,   KC_QUOT,
     KC_LSFT,   KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                                                                              KC_N,      KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSFT,
-               XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                                                 XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
+               XXXXXXX,   XXXXXXX,   XXXXXXX,   MO(NUM),                                                                                                 XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
               //  KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,                                                                                                 KC_RSFT,   KC_RGUI,   KC_RALT,   KC_RCTL,
                                                            OSL(UNI),  HS_BTN1,                                                     XXXXXXX,   XXXXXXX,
                                                                       HS_SCUP,                                                     XXXXXXX,
@@ -155,10 +156,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,   KC_EXLM,   KC_AT,     KC_HASH,   KC_DLR,    KC_PERC,                                                                           KC_ESC,    KC_LCBR,   KC_TAB,    KC_RCBR,   KC_BSPC,   KC_DEL,
     XXXXXXX,   KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,   KC_EQL,                                                                            KC_PIPE,   KC_LPRN,   KC_MINUS,  KC_RPRN,   KC_COLN,   XXXXXXX,
     XXXXXXX,   KC_BSLS,   KC_LT,     CPY_PST,   KC_GT,     KC_TILD,                                                                           KC_GRV,    KC_LBRC,   KC_UNDS,   KC_RBRC,   XXXXXXX,   XXXXXXX,
-               _______,   _______,   _______,   _______,                                                                                                 _______,   _______,   _______,   _______,
+               _______,   _______,   _______,   MO(NUM),                                                                                                 _______,   _______,   _______,   _______,
                                                            XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   KC_DEL,
                                                                       XXXXXXX,                                                     XXXXXXX,
                                                 _ENTRY_,   XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   G(KC_ENT), KC_BSPC
+  ),
+
+  [NUM] = LAYOUT_kinesis(
+    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,         XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
+    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
+    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   KC_7,      KC_8,      KC_9,      XXXXXXX,   XXXXXXX,
+    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   KC_4,      KC_5,      KC_6,      XXXXXXX,   XXXXXXX,
+    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   KC_1,      KC_2,      KC_3,      KC_SLSH,   XXXXXXX,
+               XXXXXXX,   XXXXXXX,   XXXXXXX,   _ENTRY_,                                                                                                 KC_0,      XXXXXXX,   KC_DOT,    XXXXXXX,
+                                                           XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,
+                                                                      XXXXXXX,                                                     XXXXXXX,
+                                                _ENTRY_,   XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,   KC_0
   ),
 
   [UNI] = LAYOUT_kinesis(
@@ -232,11 +245,17 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 }
 
 
-// const uint16_t PROGMEM combo_fast_backspace[] = {SPC_THMB, MO(SYM), COMBO_END};
-// combo_t key_combos[] = {
-//     COMBO(combo_fast_backspace, KC_BSPC),
-// };
-// uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(key_combos[0]);
+const uint16_t PROGMEM combo_osm_ctl[] = {HR_A, HR_SCLN, COMBO_END};
+const uint16_t PROGMEM combo_osm_alt[] = {HR_S, HR_L, COMBO_END};
+const uint16_t PROGMEM combo_osm_gui[] = {HR_D, HR_K, COMBO_END};
+const uint16_t PROGMEM combo_osm_sft[] = {HR_F, HR_J, COMBO_END};
+combo_t key_combos[] = {
+    COMBO(combo_osm_ctl, OSM(MOD_LCTL)),
+    COMBO(combo_osm_alt, OSM(MOD_LALT)),
+    COMBO(combo_osm_gui, OSM(MOD_LGUI)),
+    COMBO(combo_osm_sft, OSM(MOD_LSFT)),
+};
+uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(key_combos[0]);
 
 // bool fn_held;
 // void dance_layers(qk_tap_dance_state_t *state, void *user_data)
