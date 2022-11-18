@@ -49,6 +49,7 @@
 // TODO UNI-r left mouse click for selecting whatever window is already under the mouse (shortcut for single action in warpd)
 
 
+#ifdef TAP_DANCE_ENABLE
 typedef enum {
     TD_NONE,
     TD_UNKNOWN,
@@ -80,8 +81,16 @@ void lthmb_reset(qk_tap_dance_state_t *state, void *user_data);
 
 // #define LTHMB TD(TD_LTHMB)
 #define LTHMB MO(SYM)
-
 #define CPY_PST TD(TD_CUT_COPY_PASTE)
+
+#else // TAP_DANCE_ENABLE
+
+#define LTHMB MO(SYM)
+#define CPY_PST KC_NO
+
+#endif // TAP_DANCE_ENABLE
+
+
 
 /****************************************************************************************************
 *
@@ -128,7 +137,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [BASE] = LAYOUT_kinesis(
     KC_ESC,    KC_F1,     KC_F2,     KC_F3,     KC_F4,     KC_F5,     KC_F6,     KC_F7,     KC_F8,           KC_F9,     KC_F10,    KC_F11,    KC_F12,    XXXXXXX,   XXXXXXX,   QK_BOOT,
     KC_EQL,    KC_1,      KC_2,      KC_3,      KC_4,      KC_5,                                                                              KC_6,      KC_7,      KC_8,      KC_9,      KC_0,      KC_MINS,
-    KC_TAB,    KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,                                                                              KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,      KC_BSLS,
+    KC_NO,     KC_Q,      KC_W,      KC_E,      KC_R,      KC_T,                                                                              KC_Y,      KC_U,      KC_I,      KC_O,      KC_P,      KC_BSLS,
     KC_NO,     HR_A,      HR_S,      HR_D,      HR_F,      KC_G,                                                                              KC_H,      HR_J,      HR_K,      HR_L,      HR_SCLN,   KC_QUOT,
     KC_LSFT,   KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                                                                              KC_N,      KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSFT,
                XXXXXXX,   XXXXXXX,   XXXXXXX,   MO(NUM),                                                                                                 XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
@@ -244,6 +253,7 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
     }
 }
 
+#ifdef COMBO_ENABLE
 
 const uint16_t PROGMEM combo_osm_ctl[] = {HR_A, HR_SCLN, COMBO_END};
 const uint16_t PROGMEM combo_osm_alt[] = {HR_S, HR_L, COMBO_END};
@@ -294,7 +304,9 @@ uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(key_combos[0]);
 //   }
 // }
 
+#endif // COMBO_ENABLE
 
+#ifdef TAP_DANCE_ENABLE
 /* Return an integer that corresponds to what kind of tap dance should be executed.
  *
  * How to figure out tap dance state: interrupted and pressed.
@@ -390,3 +402,5 @@ qk_tap_dance_action_t tap_dance_actions[] = {
     [TD_LTHMB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lthmb_finished, lthmb_reset),
     [TD_CUT_COPY_PASTE] = ACTION_TAP_DANCE_DOUBLE(G(KC_C), G(KC_V)),
 };
+
+#endif // TAP_DANCE_ENABLE

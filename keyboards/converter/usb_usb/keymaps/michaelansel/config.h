@@ -14,3 +14,6 @@
 
 
 #define ONESHOT_TIMEOUT 1000  /* Time (in ms) before the one shot key is automatically released */
+
+// Auto shift home row mod keys
+#define RETRO_SHIFT
