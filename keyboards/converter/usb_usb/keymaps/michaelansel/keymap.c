@@ -9,7 +9,7 @@
 #define NUM 5 // Keypad layer / Number pad
 
 // Home row mods
-#if 1
+#if 0
 #define HR_A     LCTL_T(KC_A)
 #define HR_S     LALT_T(KC_S)
 #define HR_D     LGUI_T(KC_D)
@@ -46,6 +46,7 @@
 #define HS_SCUP HYPR(KC_N) // Scroll Up
 #define HS_BTN1 HYPR(KC_O) // Click Mouse Button 1
 #define HS_MCTR HYPR(KC_P) // Move mouse to the center of the screen
+#define HS_MENU HYPR(KC_Q) // Open interactive hammerspoon menu system
 // TODO UNI-r left mouse click for selecting whatever window is already under the mouse (shortcut for single action in warpd)
 
 
@@ -142,7 +143,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     KC_LSFT,   KC_Z,      KC_X,      KC_C,      KC_V,      KC_B,                                                                              KC_N,      KC_M,      KC_COMM,   KC_DOT,    KC_SLSH,   KC_RSFT,
                XXXXXXX,   XXXXXXX,   XXXXXXX,   MO(NUM),                                                                                                 XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
               //  KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,                                                                                                 KC_RSFT,   KC_RGUI,   KC_RALT,   KC_RCTL,
-                                                           OSL(UNI),  HS_BTN1,                                                     HS_MCTR,   XXXXXXX,
+                                                           OSL(UNI),  HS_BTN1,                                                     HS_MCTR,   OSL(UNI),
                                                                       HS_SCUP,                                                     XXXXXXX,
                                                 LTHMB,     MO(NAV),   HS_SCDN,                                                     XXXXXXX,   KC_ENTER,  KC_SPC
   ),
@@ -186,11 +187,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [UNI] = LAYOUT_kinesis(
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,         XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           HS_CHRM,   HS_MEET,   HS_TYPR,   HS_SLAK,   HS_CODE,   HS_TERM,
-    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           HS_RTM,    KC_MPRV,   KC_MPLY,   KC_MNXT,   HS_SPFY,   XXXXXXX,
+    XXXXXXX,   XXXXXXX,   XXXXXXX,   HS_MENU,   XXXXXXX,   XXXXXXX,                                                                           HS_CHRM,   HS_MEET,   HS_TYPR,   HS_SLAK,   HS_CODE,   HS_TERM,
+    XXXXXXX,   OSM(MOD_LCTL),   OSM(MOD_LALT),   OSM(MOD_LGUI),   OSM(MOD_LSFT),   XXXXXXX,                                                                           HS_RTM,    KC_MPRV,   KC_MPLY,   KC_MNXT,   HS_SPFY,   XXXXXXX,
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
                XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                                                 XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-                                                           _ENTRY_,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,
+                                                           HS_MENU,   XXXXXXX,                                                     XXXXXXX,   _ENTRY_,
                                                                       XXXXXXX,                                                     XXXXXXX,
                                                 XXXXXXX,   XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,   XXXXXXX
   ),
@@ -260,10 +261,10 @@ const uint16_t PROGMEM combo_osm_alt[] = {HR_S, HR_L, COMBO_END};
 const uint16_t PROGMEM combo_osm_gui[] = {HR_D, HR_K, COMBO_END};
 const uint16_t PROGMEM combo_osm_sft[] = {HR_F, HR_J, COMBO_END};
 combo_t key_combos[] = {
-    COMBO(combo_osm_ctl, OSM(MOD_LCTL)),
-    COMBO(combo_osm_alt, OSM(MOD_LALT)),
-    COMBO(combo_osm_gui, OSM(MOD_LGUI)),
-    COMBO(combo_osm_sft, OSM(MOD_LSFT)),
+    // COMBO(combo_osm_ctl, OSM(MOD_LCTL)),
+    // COMBO(combo_osm_alt, OSM(MOD_LALT)),
+    // COMBO(combo_osm_gui, OSM(MOD_LGUI)),
+    // COMBO(combo_osm_sft, OSM(MOD_LSFT)),
 };
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(key_combos[0]);
 
