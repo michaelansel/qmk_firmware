@@ -410,3 +410,70 @@ tap_dance_action_t tap_dance_actions[] = {
 };
 
 #endif // TAP_DANCE_ENABLE
+
+typedef struct {
+    bool layers[16];
+    struct {
+        bool ctrl;
+        bool opt;
+        bool cmd;
+        bool shft;
+    } osm;
+} my_indicators_t;
+my_indicators_t my_indicators;
+
+led_t physical_led_state;
+
+static uint16_t my_indicators_blink_timer;
+void show_my_indicators(void) {
+    led_t leds = physical_led_state;
+    bool blink_time = timer_elapsed(my_indicators_blink_timer) > 200;
+
+    if (my_indicators.osm.ctrl) {
+        if (blink_time) leds.caps_lock = !leds.caps_lock;
+    } else {
+        leds.caps_lock = (my_indicators.layers[SYM]);
+    }
+
+    if (my_indicators.osm.cmd) {
+        if (blink_time) leds.num_lock = !leds.num_lock;
+    } else {
+        leds.num_lock = (my_indicators.layers[NAV]);
+    }
+
+    if (my_indicators.osm.shft) {
+        if (blink_time) leds.scroll_lock = !leds.scroll_lock;
+    } else {
+        leds.scroll_lock = (my_indicators.layers[UNI]);
+    }
+
+    if (blink_time) my_indicators_blink_timer = timer_read();
+    physical_led_state = leds;
+    led_update_ports(leds);
+}
+
+layer_state_t layer_state_set_user(layer_state_t state) {
+    my_indicators.layers[SYM] = IS_LAYER_ON_STATE(state, SYM);
+    my_indicators.layers[NAV] = IS_LAYER_ON_STATE(state, NAV);
+    my_indicators.layers[UNI] = IS_LAYER_ON_STATE(state, UNI);
+    show_my_indicators();
+    return state;
+}
+
+bool led_update_user(led_t led_state) {
+    // Block normal signals from reaching the LEDs (i.e. from the computer)
+    return false;
+}
+
+void oneshot_mods_changed_user(uint8_t mods) {
+    my_indicators.osm.ctrl = (mods & MOD_MASK_CTRL);
+    my_indicators.osm.opt = (mods & MOD_MASK_ALT);
+    my_indicators.osm.cmd = (mods & MOD_MASK_GUI);
+    my_indicators.osm.shft = (mods & MOD_MASK_SHIFT);
+
+    show_my_indicators();
+}
+
+void housekeeping_task_user(void) {
+    show_my_indicators();
+}
