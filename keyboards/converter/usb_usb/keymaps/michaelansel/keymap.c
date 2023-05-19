@@ -74,11 +74,11 @@ enum {
     TD_CUT_COPY_PASTE,
 };
 
-td_state_t cur_dance(qk_tap_dance_state_t *state);
+td_state_t cur_dance(tap_dance_state_t *state);
 
 // For the x tap dance. Put it here so it can be used in any keymap
-void lthmb_finished(qk_tap_dance_state_t *state, void *user_data);
-void lthmb_reset(qk_tap_dance_state_t *state, void *user_data);
+void lthmb_finished(tap_dance_state_t *state, void *user_data);
+void lthmb_reset(tap_dance_state_t *state, void *user_data);
 
 // #define LTHMB TD(TD_LTHMB)
 #define LTHMB MO(SYM)
@@ -198,7 +198,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                                                       XXXXXXX,                                                     XXXXXXX,
                                                 XXXXXXX,   XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,   XXXXXXX
   ),
-  
+
   // Move app selections do a dedicated app layer separate from the Universal layer? Put mouse keys on the universal layer.
 
 };
@@ -218,7 +218,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 //     [BANG]  = 0x203D,  // ‽
 //     [IRONY] = 0x2E2E,  // ⸮
 //     [SNEK]  = 0x1F40D, // 🐍
-//     [THUMBS_UP] = 0x1F44D // 
+//     [THUMBS_UP] = 0x1F44D //
 // };
 
 // Replace Option-v with a thumbs up instead of square root/checkmark
@@ -274,7 +274,7 @@ combo_t key_combos[] = {
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(key_combos[0]);
 
 // bool fn_held;
-// void dance_layers(qk_tap_dance_state_t *state, void *user_data)
+// void dance_layers(tap_dance_state_t *state, void *user_data)
 // {
 //   if (state->pressed)
 //   {
@@ -301,7 +301,7 @@ uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(key_combos[0]);
 //     break;
 //   }
 // }
-// void dance_layers_finish(qk_tap_dance_state_t *state, void *user_data)
+// void dance_layers_finish(tap_dance_state_t *state, void *user_data)
 // {
 //   if (fn_held)
 //   {
@@ -340,7 +340,7 @@ uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(key_combos[0]);
  * For the third point, there does exist the 'TD_DOUBLE_SINGLE_TAP', however this is not fully tested
  *
  */
-td_state_t cur_dance(qk_tap_dance_state_t *state) {
+td_state_t cur_dance(tap_dance_state_t *state) {
     if (state->count == 1) {
         if (state->interrupted || !state->pressed) return TD_SINGLE_TAP;
         // Key has not been interrupted, but the key is still held. Means you want to send a 'HOLD'.
@@ -372,7 +372,7 @@ static td_tap_t lthmb_tapstate = {
 };
 
 // When a tap dance key is pressed/released
-void lthmb_finished(qk_tap_dance_state_t *state, void *user_data) {
+void lthmb_finished(tap_dance_state_t *state, void *user_data) {
     lthmb_tapstate.state = cur_dance(state);
     switch (lthmb_tapstate.state) {
         case TD_SINGLE_TAP: set_oneshot_layer(SYM, ONESHOT_START); break;
@@ -390,7 +390,7 @@ void lthmb_finished(qk_tap_dance_state_t *state, void *user_data) {
 }
 
 // When TAPPING_TERM expires AND tap dance key is released
-void lthmb_reset(qk_tap_dance_state_t *state, void *user_data) {
+void lthmb_reset(tap_dance_state_t *state, void *user_data) {
     switch (lthmb_tapstate.state) {
         case TD_SINGLE_TAP: clear_oneshot_layer_state(ONESHOT_PRESSED); break;
         case TD_SINGLE_HOLD: layer_off(SYM); break;
@@ -404,7 +404,7 @@ void lthmb_reset(qk_tap_dance_state_t *state, void *user_data) {
     lthmb_tapstate.state = TD_NONE;
 }
 
-qk_tap_dance_action_t tap_dance_actions[] = {
+tap_dance_action_t tap_dance_actions[] = {
     [TD_LTHMB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lthmb_finished, lthmb_reset),
     [TD_CUT_COPY_PASTE] = ACTION_TAP_DANCE_DOUBLE(G(KC_C), G(KC_V)),
 };
