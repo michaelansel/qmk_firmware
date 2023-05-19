@@ -91,6 +91,9 @@ void lthmb_reset(qk_tap_dance_state_t *state, void *user_data);
 
 #endif // TAP_DANCE_ENABLE
 
+#define LTHMB1 LTHMB
+#define LTHMB2 MO(NAV)
+
 
 
 /****************************************************************************************************
@@ -145,7 +148,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
               //  KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,                                                                                                 KC_RSFT,   KC_RGUI,   KC_RALT,   KC_RCTL,
                                                            OSL(UNI),  HS_BTN1,                                                     HS_MCTR,   OSL(UNI),
                                                                       HS_SCUP,                                                     XXXXXXX,
-                                                LTHMB,     MO(NAV),   HS_SCDN,                                                     XXXXXXX,   KC_ENTER,  KC_SPC
+                                                LTHMB1,    LTHMB2,    HS_SCDN,                                                     XXXXXXX,   KC_ENTER,  KC_SPC
   ),
 
   [NAV] = LAYOUT_kinesis(
@@ -260,6 +263,8 @@ const uint16_t PROGMEM combo_osm_ctl[] = {HR_A, HR_SCLN, COMBO_END};
 const uint16_t PROGMEM combo_osm_alt[] = {HR_S, HR_L, COMBO_END};
 const uint16_t PROGMEM combo_osm_gui[] = {HR_D, HR_K, COMBO_END};
 const uint16_t PROGMEM combo_osm_sft[] = {HR_F, HR_J, COMBO_END};
+const uint16_t PROGMEM combo_rthumbs[] = {KC_ENTER,  KC_SPC, COMBO_END};
+const uint16_t PROGMEM combo_lthumbs[] = {LTHMB1,  LTHMB2, COMBO_END};
 combo_t key_combos[] = {
     // COMBO(combo_osm_ctl, OSM(MOD_LCTL)),
     // COMBO(combo_osm_alt, OSM(MOD_LALT)),
