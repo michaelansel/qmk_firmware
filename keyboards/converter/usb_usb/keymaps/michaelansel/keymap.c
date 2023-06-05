@@ -79,7 +79,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,   KC_EXLM,   KC_AT,     KC_HASH,   KC_DLR,    KC_PERC,                                                                           KC_ESC,    KC_LCBR,   KC_TAB,    KC_RCBR,   KC_BSPC,   KC_DEL,
     XXXXXXX,   KC_LCTL,   KC_LALT,   KC_LGUI,   KC_LSFT,   KC_EQL,                                                                            KC_PIPE,   KC_LPRN,   KC_MINUS,  KC_RPRN,   KC_COLN,   XXXXXXX,
     XXXXXXX,   KC_BSLS,   KC_LT,     CPY_PST,   KC_GT,     KC_TILD,                                                                           KC_GRV,    KC_LBRC,   KC_UNDS,   KC_RBRC,   XXXXXXX,   XXXXXXX,
-               _______,   _______,   _______,   MO(NUM),                                                                                                 _______,   _______,   _______,   _______,
+               _______,   _______,   _______,   TG(NUM),                                                                                                 _______,   _______,   _______,   _______,
                                                            XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   KC_DEL,
                                                                       XXXXXXX,                                                     XXXXXXX,
                                                 _ENTRY_,   XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   G(KC_ENT), KC_BSPC
@@ -102,7 +102,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
     XXXXXXX,   XXXXXXX,   XXXXXXX,   HS_MENU,   XXXXXXX,   XXXXXXX,                                                                           HS_CHRM,   HS_MEET,   HS_TYPR,   HS_SLAK,   HS_CODE,   HS_TERM,
     XXXXXXX,   OSM(MOD_LCTL),   OSM(MOD_LALT),   OSM(MOD_LGUI),   OSM(MOD_LSFT),   XXXXXXX,                                                                           HS_RTM,    KC_MPRV,   KC_MPLY,   KC_MNXT,   HS_SPFY,   XXXXXXX,
-    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                           XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
+    XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   C(KC_B),                                                                           XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
                XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                                                 XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
                                                            HS_MENU,   XXXXXXX,                                                     XXXXXXX,   _ENTRY_,
                                                                       XXXXXXX,                                                     XXXXXXX,
