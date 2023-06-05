@@ -2,10 +2,10 @@
 
 // Layers
 #define BASE 0
+#define NUM 1 // Keypad layer / Number pad
 #define NAV 2 // Navigation/Focus control
 #define SYM 3 // Symbols
 #define UNI 4 // Universal/media keys
-#define NUM 5 // Keypad layer / Number pad
 
 // Home row mods
 #if 0
