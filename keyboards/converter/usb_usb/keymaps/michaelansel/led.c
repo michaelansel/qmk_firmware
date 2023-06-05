@@ -21,19 +21,19 @@ void show_my_indicators(void) {
     if (my_indicators.osm.ctrl) {
         if (blink_time) leds.caps_lock = !leds.caps_lock;
     } else {
-        leds.caps_lock = (my_indicators.layers[SYM]);
+        leds.caps_lock = (my_indicators.layers[SYM]) || (my_indicators.layers[NUM]);
     }
 
     if (my_indicators.osm.cmd) {
         if (blink_time) leds.num_lock = !leds.num_lock;
     } else {
-        leds.num_lock = (my_indicators.layers[NAV]);
+        leds.num_lock = (my_indicators.layers[NAV]) || (my_indicators.layers[NUM]);
     }
 
     if (my_indicators.osm.shft) {
         if (blink_time) leds.scroll_lock = !leds.scroll_lock;
     } else {
-        leds.scroll_lock = (my_indicators.layers[UNI]);
+        leds.scroll_lock = (my_indicators.layers[UNI]) || (my_indicators.layers[NUM]);
     }
 
     // If we blinked, reset the timer

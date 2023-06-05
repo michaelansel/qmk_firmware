@@ -6,6 +6,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     my_indicators.layers[SYM] = IS_LAYER_ON_STATE(state, SYM);
     my_indicators.layers[NAV] = IS_LAYER_ON_STATE(state, NAV);
     my_indicators.layers[UNI] = IS_LAYER_ON_STATE(state, UNI);
+    my_indicators.layers[NUM] = IS_LAYER_ON_STATE(state, NUM);
 
     // Update LED indicators immediately
     show_my_indicators();
