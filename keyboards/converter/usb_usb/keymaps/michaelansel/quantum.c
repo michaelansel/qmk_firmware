@@ -54,8 +54,8 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
 }
 
 
-void dynamic_macro_record_start_user(void) {
-    my_indicators.macro_recording = 1;
+void dynamic_macro_record_start_user(int8_t direction) {
+    my_indicators.macro_recording = direction > 0 ? 1 : 2;
 }
 
 void dynamic_macro_record_end_user(int8_t direction) {
