@@ -3,6 +3,7 @@
 #include "led.c"
 #include "quantum.c"
 #include "macros.c"
+#include "kinesis.h"
 
 #define _ENTRY_ KC_TRANSPARENT // Alias for the key that got us into this layer
 

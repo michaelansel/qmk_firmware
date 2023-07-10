@@ -9,7 +9,7 @@
 #define TAPPING_FORCE_HOLD
 
 // Require very long hold to trigger mod-tap keys (but with permissive hold, should still enable fast combos)
-#define IGNORE_MOD_TAP_INTERRUPT
+//#define IGNORE_MOD_TAP_INTERRUPT // this is now the default
 #define TAPPING_TERM_PER_KEY
 
 
