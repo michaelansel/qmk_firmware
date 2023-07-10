@@ -20,7 +20,7 @@ static uint16_t my_indicators_blink_timer;
 // - Indicate recording active with fast blink LEDs: macro1, macro2
 void show_my_indicators(void) {
     led_t leds = physical_led_state;
-    int8_t blink_period = my_indicators.macro_recording > 0 ? 100 : 200; // go extra fast when recording a macro
+    uint8_t blink_period = my_indicators.macro_recording > 0 ? 100 : 200; // go extra fast when recording a macro
     bool blink_time = timer_elapsed(my_indicators_blink_timer) > blink_period;
 
     // Show layers unless there is an OSM active, and then blink to indicate OSM active
