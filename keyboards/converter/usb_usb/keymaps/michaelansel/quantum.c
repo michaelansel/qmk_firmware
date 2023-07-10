@@ -52,3 +52,12 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
             return TAPPING_TERM;
     }
 }
+
+
+void dynamic_macro_record_start_user(void) {
+    my_indicators.macro_recording = 1;
+}
+
+void dynamic_macro_record_end_user(int8_t direction) {
+    my_indicators.macro_recording = 0;
+}
