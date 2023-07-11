@@ -69,3 +69,7 @@ enum {
 
 #define LTHMB1 LTHMB
 #define LTHMB2 MO(NAV)
+
+enum custom_keycodes {
+    MOD_FIX = SAFE_RANGE, // macro to press/release all modifiers to fix the OS missing a release
+};

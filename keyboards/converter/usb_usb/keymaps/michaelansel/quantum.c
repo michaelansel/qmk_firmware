@@ -61,3 +61,14 @@ void dynamic_macro_record_start_user(int8_t direction) {
 void dynamic_macro_record_end_user(int8_t direction) {
     my_indicators.macro_recording = 0;
 }
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    switch (keycode) {
+    case MOD_FIX:
+        if (record->event.pressed) {
+            SEND_STRING( SS_TAP(X_LCTL) SS_TAP(X_LALT) SS_TAP(X_LGUI) SS_TAP(X_LSFT) SS_TAP(X_RCTL) SS_TAP(X_RALT) SS_TAP(X_RGUI) SS_TAP(X_RSFT) );
+        }
+        break;
+    }
+    return true;
+}
