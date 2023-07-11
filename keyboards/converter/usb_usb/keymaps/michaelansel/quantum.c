@@ -36,6 +36,7 @@ void housekeeping_task_user(void) {
 }
 
 uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
+#ifdef HOME_ROW_MODS_ENABLE
     switch (keycode) {
         case HR_A:
         case HR_S:
@@ -51,6 +52,9 @@ uint16_t get_tapping_term(uint16_t keycode, keyrecord_t *record) {
         default:
             return TAPPING_TERM;
     }
+#else
+    return TAPPING_TERM;
+#endif // HOME_ROW_MODS_ENABLE
 }
 
 

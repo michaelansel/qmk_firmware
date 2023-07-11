@@ -8,7 +8,7 @@
 #define UNI 4 // Universal/media keys
 
 // Home row mods
-#if 0
+#ifdef HOME_ROW_MODS_ENABLE
 #define HR_A     LCTL_T(KC_A)
 #define HR_S     LALT_T(KC_S)
 #define HR_D     LGUI_T(KC_D)
@@ -26,7 +26,7 @@
 #define HR_K     KC_K
 #define HR_L     KC_L
 #define HR_SCLN  KC_SCLN
-#endif
+#endif // HOME_ROW_MODS_ENABLE
 
 // Hammerspoon Triggers
 #define HS_WARP HYPR(KC_A) // Launch warpd
