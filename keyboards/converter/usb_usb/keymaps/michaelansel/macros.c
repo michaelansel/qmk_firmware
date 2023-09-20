@@ -112,7 +112,7 @@ void lthmb_reset(tap_dance_state_t *state, void *user_data) {
 
 
 tap_dance_action_t tap_dance_actions[] = {
-    [TD_LTHMB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lthmb_finished, lthmb_reset),
+    // [TD_LTHMB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lthmb_finished, lthmb_reset),
     [TD_CUT_COPY_PASTE] = ACTION_TAP_DANCE_DOUBLE(G(KC_C), G(KC_V)),
 };
 
