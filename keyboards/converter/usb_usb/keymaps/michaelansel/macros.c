@@ -125,17 +125,23 @@ tap_dance_action_t tap_dance_actions[] = {
 
 #ifdef COMBO_ENABLE
 
-const uint16_t PROGMEM combo_osm_ctl[] = {HR_A, HR_SCLN, COMBO_END};
-const uint16_t PROGMEM combo_osm_alt[] = {HR_S, HR_L, COMBO_END};
-const uint16_t PROGMEM combo_osm_gui[] = {HR_D, HR_K, COMBO_END};
-const uint16_t PROGMEM combo_osm_sft[] = {HR_F, HR_J, COMBO_END};
-const uint16_t PROGMEM combo_rthumbs[] = {KC_ENTER,  KC_SPC, COMBO_END};
-const uint16_t PROGMEM combo_lthumbs[] = {LTHMB1,  LTHMB2, COMBO_END};
+// const uint16_t PROGMEM combo_osm_ctl[] = {HR_A, HR_SCLN, COMBO_END};
+// const uint16_t PROGMEM combo_osm_alt[] = {HR_S, HR_L, COMBO_END};
+// const uint16_t PROGMEM combo_osm_gui[] = {HR_D, HR_K, COMBO_END};
+// const uint16_t PROGMEM combo_osm_sft[] = {HR_F, HR_J, COMBO_END};
+// const uint16_t PROGMEM combo_rthumbs[] = {KC_ENTER,  KC_SPC, COMBO_END};
+// const uint16_t PROGMEM combo_lthumbs[] = {LTHMB1,  LTHMB2, COMBO_END};
+
+const uint16_t PROGMEM fd_combo[] = {KC_F, KC_D, COMBO_END};
+const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
+
 combo_t key_combos[] = {
     // COMBO(combo_osm_ctl, OSM(MOD_LCTL)),
     // COMBO(combo_osm_alt, OSM(MOD_LALT)),
     // COMBO(combo_osm_gui, OSM(MOD_LGUI)),
     // COMBO(combo_osm_sft, OSM(MOD_LSFT)),
+    COMBO(fd_combo, KC_LSFT),
+    COMBO(jk_combo, KC_RSFT),
 };
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(key_combos[0]);
 
