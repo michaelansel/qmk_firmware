@@ -14,13 +14,12 @@
 #endif // CAPS_WORD_ENABLE
 
 
-
-#ifdef HOME_ROW_MODS_ENABLE
-
 // Prioritize the hold action if it was obviously a hold, just done quickly
 #define PERMISSIVE_HOLD
 // Disable double-tap to repeat; my hold keys are selected to never require hold-to-repeat
 #define TAPPING_FORCE_HOLD
+
+#ifdef HOME_ROW_MODS_ENABLE
 
 // Require very long hold to trigger mod-tap keys (but with permissive hold, should still enable fast combos)
 // #define IGNORE_MOD_TAP_INTERRUPT // this is now the default
