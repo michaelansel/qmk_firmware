@@ -133,7 +133,9 @@ tap_dance_action_t tap_dance_actions[] = {
 // const uint16_t PROGMEM combo_lthumbs[] = {LTHMB1,  LTHMB2, COMBO_END};
 
 const uint16_t PROGMEM fd_combo[] = {KC_F, KC_D, COMBO_END};
+const uint16_t PROGMEM ds_combo[] = {KC_D, KC_S, COMBO_END};
 const uint16_t PROGMEM jk_combo[] = {KC_J, KC_K, COMBO_END};
+const uint16_t PROGMEM kl_combo[] = {KC_K, KC_L, COMBO_END};
 
 combo_t key_combos[] = {
     // COMBO(combo_osm_ctl, OSM(MOD_LCTL)),
@@ -141,7 +143,9 @@ combo_t key_combos[] = {
     // COMBO(combo_osm_gui, OSM(MOD_LGUI)),
     // COMBO(combo_osm_sft, OSM(MOD_LSFT)),
     COMBO(fd_combo, KC_LSFT),
+    COMBO(ds_combo, KC_LSFT),
     COMBO(jk_combo, KC_RSFT),
+    COMBO(kl_combo, KC_RSFT),
 };
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(key_combos[0]);
 
