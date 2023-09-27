@@ -52,6 +52,7 @@
 enum {
     TD_LTHMB,
     TD_CUT_COPY_PASTE,
+    TD_RTM,
 };
 
 #ifdef TAP_DANCE_ENABLE
@@ -59,11 +60,13 @@ enum {
 // #define LTHMB TD(TD_LTHMB)
 #define LTHMB MO(SYM)
 #define CPY_PST TD(TD_CUT_COPY_PASTE)
+#define RTM TD(TD_RTM)
 
 #else // TAP_DANCE_ENABLE
 
 #define LTHMB MO(SYM)
 #define CPY_PST KC_NO
+#define RTM KC_NO
 
 #endif // TAP_DANCE_ENABLE
 
