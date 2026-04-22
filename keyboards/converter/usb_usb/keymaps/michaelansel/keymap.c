@@ -110,9 +110,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     XXXXXXX,   OSM(MOD_LCTL),   OSM(MOD_LALT),   OSM(MOD_LGUI),   OSM(MOD_LSFT),   AE_EQLS,                                                                           AE_FO_L,   AE_FO_D,   AE_FO_U,   AE_FO_R,   AE_TGAC,   XXXXXXX,
     XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,   AE_TRST,                                                                           AE_JO_L,   AE_JO_D,   AE_JO_U,   AE_JO_R,   AE_TGRT,   XXXXXXX,
                XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,                                                                                                 XXXXXXX,   XXXXXXX,   XXXXXXX,   XXXXXXX,
-                                                           HS_MENU,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,
+                                                           _ENTRY_,   XXXXXXX,                                                     XXXXXXX,   HS_MENU,
                                                                       XXXXXXX,                                                     XXXXXXX,
-                                                XXXXXXX,   XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,   XXXXXXX
+                                                XXXXXXX,   XXXXXXX,   XXXXXXX,                                                     XXXXXXX,   XXXXXXX,   LEADERK
   ),
 
   // Move app selections to a dedicated app layer separate from the Universal layer? Put mouse keys on the universal layer.

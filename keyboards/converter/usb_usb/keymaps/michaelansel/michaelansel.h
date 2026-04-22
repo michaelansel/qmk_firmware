@@ -48,6 +48,7 @@
 #define HS_MCTR HYPR(KC_P) // Move mouse to the center of the screen
 #define HS_MENU HYPR(KC_Q) // Open interactive hammerspoon menu system
 // TODO UNI-r left mouse click for selecting whatever window is already under the mouse (shortcut for single action in warpd)
+#define LEADERK HYPR(KC_S) // Open Leader Key
 
 // Magnet.app
 #define MAG_L C(A(KC_LEFT))
