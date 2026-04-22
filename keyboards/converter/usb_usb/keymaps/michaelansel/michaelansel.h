@@ -149,4 +149,5 @@ enum {
 
 enum custom_keycodes {
     MOD_FIX = SAFE_RANGE, // macro to press/release all modifiers to fix the OS missing a release
+    NEXTSEN, // ". " and OSM LSFT
 };

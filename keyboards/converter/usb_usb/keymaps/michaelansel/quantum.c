@@ -73,6 +73,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING( SS_TAP(X_LCTL) SS_TAP(X_LALT) SS_TAP(X_LGUI) SS_TAP(X_LSFT) SS_TAP(X_RCTL) SS_TAP(X_RALT) SS_TAP(X_RGUI) SS_TAP(X_RSFT) );
         }
         break;
+    case NEXTSEN:  // Next sentence macro; https://getreuer.info/posts/keyboards/macros/index.html
+        if (record->event.pressed) {
+            SEND_STRING(". ");
+            add_oneshot_mods(MOD_BIT(KC_LSFT));  // Set one-shot mod for shift.
+        }
+        return false;
     }
     return true;
 }
