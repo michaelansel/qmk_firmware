@@ -73,12 +73,40 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
             SEND_STRING( SS_TAP(X_LCTL) SS_TAP(X_LALT) SS_TAP(X_LGUI) SS_TAP(X_LSFT) SS_TAP(X_RCTL) SS_TAP(X_RALT) SS_TAP(X_RGUI) SS_TAP(X_RSFT) );
         }
         break;
-    case NEXTSEN:  // Next sentence macro; https://getreuer.info/posts/keyboards/macros/index.html
-        if (record->event.pressed) {
-            SEND_STRING(". ");
-            add_oneshot_mods(MOD_BIT(KC_LSFT));  // Set one-shot mod for shift.
-        }
+    // case NEXTSEN:  // Next sentence macro; https://getreuer.info/posts/keyboards/macros/index.html
+    //     if (record->event.pressed) {
+    //         SEND_STRING(". ");
+    //         add_oneshot_mods(MOD_BIT(KC_LSFT));  // Set one-shot mod for shift.
+    //     }
+    //     return false;
+    // case LK_AERO_FOC_MON:  // Leader Key Aerospace Focus Next Monitor
+    //     if (record->event.pressed) {
+    //         SEND_STRING(SS_LGUI(SS_LCTL(SS_LALT(SS_LSFT("s")))) "af");
+    //     }
+    //     return false;
+#define SSLK(sequence) SEND_STRING(SS_LGUI(SS_LCTL(SS_LALT(SS_LSFT("s")))) SS_DELAY(100) sequence)
+    #define YIELD(KEY, SEQUENCE) \
+    case KEY: \
+        if (record->event.pressed) { \
+            SSLK(SEQUENCE); \
+        } \
         return false;
+    LEADER_KEY_APP_SEQUENCES(YIELD)
+    #undef YIELD
+    // Idea for maybe more efficient code, but isn't working yet
+    // #define YIELD(KEY, SEQUENCE) case KEY:
+    // LEADER_KEY_APP_SEQUENCES(YIELD)
+    // #undef YIELD
+    //     if (record->event.pressed) {
+    //         char sequence[10] = "";
+    //         switch(keycode) {
+    //             #define YIELD(KEY, SEQUENCE) case KEY: sequence = SEQUENCE; break;
+    //             LEADER_KEY_APP_SEQUENCES(YIELD)
+    //             #undef YIELD
+    //         }
+    //         SSLK(sequence);
+    //     }
+    //     return false;
     }
     return true;
 }

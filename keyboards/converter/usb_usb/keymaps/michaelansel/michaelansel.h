@@ -121,6 +121,12 @@ Pick one direction convention and apply it everywhere it appears in the cluster 
 #define AE_TGFT C(A(KC_DOT)) // layout floating tiling
 #define AE_TGRT C(A(KC_SLSH)) // layout horizontal vertical (change container orientation)
 #define AE_TRST C(A(KC_QUOT)) // bash:make all workspace windows tiling, flatten-workspace-tree
+#define AE_FMON LK_AERO_FOC_MON // focus-monitor --wrap-around next
+
+// Leader Key sequences
+#define LEADER_KEY_APP_SEQUENCES(X) \
+    X(LK_AERO_FOC_MON, "af") /* Aerospace Focus Next Monitor */ \
+    X(LK_OPEN_TYPORA, "on") /* Open Typora */
 
 // Tap dances
 enum {
@@ -149,5 +155,8 @@ enum {
 
 enum custom_keycodes {
     MOD_FIX = SAFE_RANGE, // macro to press/release all modifiers to fix the OS missing a release
-    NEXTSEN, // ". " and OSM LSFT
+    //NEXTSEN, // ". " and OSM LSFT
+    #define YIELD(KEY, SEQUENCE) KEY,
+    LEADER_KEY_APP_SEQUENCES(YIELD)
+    #undef YIELD
 };

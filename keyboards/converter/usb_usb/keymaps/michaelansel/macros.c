@@ -143,9 +143,9 @@ combo_t key_combos[] = {
     // COMBO(combo_osm_alt, OSM(MOD_LALT)),
     // COMBO(combo_osm_gui, OSM(MOD_LGUI)),
     // COMBO(combo_osm_sft, OSM(MOD_LSFT)),
-    COMBO(fd_combo, KC_LSFT),
+    //COMBO(fd_combo, KC_LSFT),
     COMBO(ds_combo, KC_LSFT),
-    COMBO(jk_combo, KC_RSFT),
+    //COMBO(jk_combo, KC_RSFT),
     COMBO(kl_combo, KC_RSFT),
 };
 uint16_t COMBO_LEN = sizeof(key_combos) / sizeof(key_combos[0]);
