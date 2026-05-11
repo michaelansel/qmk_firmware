@@ -133,6 +133,7 @@ enum {
     TD_LTHMB,
     TD_CUT_COPY_PASTE,
     TD_RTM,
+    TD_NUM_LHT,
 };
 
 #ifdef TAP_DANCE_ENABLE

@@ -111,10 +111,60 @@ void lthmb_reset(tap_dance_state_t *state, void *user_data) {
 }
 
 
+static td_tap_t cpy_pst_tapstate = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+void cpy_pst_finished(tap_dance_state_t *state, void *user_data) {
+    cpy_pst_tapstate.state = cur_dance(state);
+    switch (cpy_pst_tapstate.state) {
+        case TD_SINGLE_TAP:  register_code16(G(KC_C)); break;
+        case TD_SINGLE_HOLD: register_code16(G(KC_X)); break;
+        case TD_DOUBLE_TAP:  register_code16(G(KC_V)); break;
+        default: break;
+    }
+}
+
+void cpy_pst_reset(tap_dance_state_t *state, void *user_data) {
+    switch (cpy_pst_tapstate.state) {
+        case TD_SINGLE_TAP:  unregister_code16(G(KC_C)); break;
+        case TD_SINGLE_HOLD: unregister_code16(G(KC_X)); break;
+        case TD_DOUBLE_TAP:  unregister_code16(G(KC_V)); break;
+        default: break;
+    }
+    cpy_pst_tapstate.state = TD_NONE;
+}
+
+
+static td_tap_t num_lht_tapstate = {
+    .is_press_action = true,
+    .state = TD_NONE
+};
+
+void num_lht_finished(tap_dance_state_t *state, void *user_data) {
+    num_lht_tapstate.state = cur_dance(state);
+    switch (num_lht_tapstate.state) {
+        case TD_SINGLE_TAP:  layer_invert(NUM); break;
+        case TD_SINGLE_HOLD: layer_on(NUM); break;
+        default: break;
+    }
+}
+
+void num_lht_reset(tap_dance_state_t *state, void *user_data) {
+    switch (num_lht_tapstate.state) {
+        case TD_SINGLE_HOLD: layer_off(NUM); break;
+        default: break;
+    }
+    num_lht_tapstate.state = TD_NONE;
+}
+
+
 tap_dance_action_t tap_dance_actions[] = {
     // [TD_LTHMB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lthmb_finished, lthmb_reset),
-    [TD_CUT_COPY_PASTE] = ACTION_TAP_DANCE_DOUBLE(G(KC_C), G(KC_V)),
+    [TD_CUT_COPY_PASTE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, cpy_pst_finished, cpy_pst_reset),
     [TD_RTM] = ACTION_TAP_DANCE_DOUBLE(HS_RTM, G(A(KC_M))),
+    [TD_NUM_LHT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, num_lht_finished, num_lht_reset),
 };
 
 #endif // TAP_DANCE_ENABLE
