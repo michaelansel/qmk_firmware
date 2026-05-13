@@ -62,7 +62,7 @@
 #define AE_CHORD HYPR(KC_SPC) // Ctrl+Shift+Alt+Gui+Space -> Aerospace action mode
 // Delay between chord and action key; gives Aerospace time to process the mode
 // transition. 30ms matches ZMK's wait-ms=20 plus USB report overhead margin.
-#define AE_CHORD_DELAY 30
+#define AE_CHORD_DELAY 50
 
 // Leader Key sequences
 #define LEADER_KEY_APP_SEQUENCES(X) \
