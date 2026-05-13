@@ -66,7 +66,52 @@ void dynamic_macro_record_end_user(int8_t direction) {
     my_indicators.macro_recording = 0;
 }
 
+static void aerospace_action(uint16_t action_key) {
+    tap_code16(AE_CHORD);
+    wait_ms(AE_CHORD_DELAY);
+    tap_code16(action_key);
+}
+
+static void ae_direction(uint16_t base_key) {
+    uint8_t held = get_mods();
+    uint8_t osm  = get_oneshot_mods();
+    uint8_t all  = held | osm;
+    uint16_t action;
+    if      ((all & MOD_MASK_SHIFT) && (all & MOD_MASK_GUI)) action = G(S(base_key));
+    else if  (all & MOD_MASK_SHIFT)                          action = S(base_key);
+    else if  (all & MOD_MASK_GUI)                            action = G(base_key);
+    else if  (all & MOD_MASK_ALT)                            action = A(base_key);
+    else                                                     action = base_key;
+    clear_mods();
+    clear_oneshot_mods();
+    aerospace_action(action);
+    set_mods(held);
+}
+
+typedef struct { uint16_t kc; uint16_t action; } ae_entry_t;
+static const ae_entry_t PROGMEM ae_table[] = {
+    {AE_CLOSE,  KC_W},   {AE_WS_P,        KC_U},    {AE_WS_N,  KC_O},
+    {AE_TGFT,   KC_P},   {AE_TGAC,        KC_SCLN}, {AE_TGRT,  KC_SLSH},
+    {AE_EQLS,   KC_G},   {AE_TRST,        KC_B},
+    {AE_DFSP,   KC_M},   {AE_FMON,        KC_H},    {AE_DFNS,  KC_DOT}, {AE_BANDF, KC_QUOT},
+    {AE_FULL,   KC_F},
+    {AE_SEND,   KC_Y},   {AE_SEND_EMPTY,  S(KC_Y)}, {AE_SEND_FLW, G(S(KC_Y))},
+};
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    if (record->event.pressed) {
+        switch (keycode) {
+            case AE_DIR_L: ae_direction(KC_J); return false;
+            case AE_DIR_D: ae_direction(KC_K); return false;
+            case AE_DIR_R: ae_direction(KC_L); return false;
+            case AE_DIR_U: ae_direction(KC_I); return false;
+        }
+        for (uint8_t i = 0; i < ARRAY_SIZE(ae_table); i++) {
+            ae_entry_t e;
+            memcpy_P(&e, &ae_table[i], sizeof(e));
+            if (keycode == e.kc) { aerospace_action(e.action); return false; }
+        }
+    }
     switch (keycode) {
     case MOD_FIX:
         if (record->event.pressed) {

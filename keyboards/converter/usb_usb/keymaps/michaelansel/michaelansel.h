@@ -56,76 +56,16 @@
 #define MAG_MAX C(A(KC_ENTER))
 #define MAG_RST C(A(KC_BACKSPACE))
 
-// Aerospace.app
-/*
-
-Two structural observations for layout design
-The shift convention.
-AeroSpace's default already establishes "unshifted = act on focus, shifted = act on window position."
-Preserving this (workspace 1 vs. send-window-to-workspace 1, focus-left vs. move-left) lets you halve the number of bindings you have to actively memorize — the second half is always just "the first half + shift."
-
-Directions want hjkl or arrows consistently.
-Focus, move, swap, resize, and join-with all take the same four-direction argument.
-If you use hjkl for focus but arrows for resize, you've doubled the cognitive load.
-Pick one direction convention and apply it everywhere it appears in the cluster map — the rest of the layout is modifier differentiation.
-
-*/
-/*
-# Workspace Navigation
-- Workspace next/prev
-  - Ctrl-L/R - reuse the standard Spaces keys
-
-# Focus
-- Focus LRUD
-  - Mod?? hjkl
-- Focus other monitor
-  - ?? replace the right thumb cmd key
-
-# Moving Windows
-- Send to workspace (and follow); direct, next/prev; other monitor
-- Move/Swap LRUD
-  - Mod?? yuio
-
-  # Layout
-  - Toggle float/tile
-  - Mod?? p
-  - Toggle tiles/accordion
-  - Mod?? ;
-  - Toggle horizontal/vertical
-  - Mod?? /
-  - Join LRUD
-  - Mod?? nm,.
-  - Mod?? sdef (kinesis wasd equiv)
-- Reset tree to flat
-  - Mod?? b
-- Equalize sizes
-  - Mod?? g
-- Fullscreen?
-  - Mod?? t
-*/
-#define AE_EQLS C(A(KC_EQL)) // balance-sizes
-#define AE_FULL C(A(S(KC_EQL))) // fullscreen
-#define AE_FO_D C(A(KC_J)) // focus down
-#define AE_FO_L C(A(KC_H)) // focus left
-#define AE_FO_R C(A(KC_L)) // focus right
-#define AE_FO_U C(A(KC_K)) // focus up
-#define AE_JO_D C(A(G(KC_J))) // join-with down
-#define AE_JO_L C(A(G(KC_H))) // join-with left
-#define AE_JO_R C(A(G(KC_L))) // join-with right
-#define AE_JO_U C(A(G(KC_K))) // join-with up
-#define AE_MV_D C(A(S(KC_J))) // move down
-#define AE_MV_L C(A(S(KC_H))) // move left
-#define AE_MV_R C(A(S(KC_L))) // move right
-#define AE_MV_U C(A(S(KC_K))) // move up
-#define AE_TGAC C(A(KC_COMM)) // layout tiles accordion (change container style)
-#define AE_TGFT C(A(KC_DOT)) // layout floating tiling
-#define AE_TGRT C(A(KC_SLSH)) // layout horizontal vertical (change container orientation)
-#define AE_TRST C(A(KC_QUOT)) // bash:make all workspace windows tiling, flatten-workspace-tree
-#define AE_FMON LK_AERO_FOC_MON // focus-monitor --wrap-around next
+// Aerospace.app -- two-step scheme: hyper chord activates action mode, then verb key
+// Direction keys (AE_DIR_*) read which mod is held to select the verb:
+//   no mod=focus  shift=move  gui=swap  alt=join  shift+gui=resize
+#define AE_CHORD HYPR(KC_SPC) // Ctrl+Shift+Alt+Gui+Space -> Aerospace action mode
+// Delay between chord and action key; gives Aerospace time to process the mode
+// transition. 30ms matches ZMK's wait-ms=20 plus USB report overhead margin.
+#define AE_CHORD_DELAY 30
 
 // Leader Key sequences
 #define LEADER_KEY_APP_SEQUENCES(X) \
-    X(LK_AERO_FOC_MON, "af") /* Aerospace Focus Next Monitor */ \
     X(LK_OPEN_TYPORA, "on") /* Open Typora */
 
 // Tap dances
@@ -134,6 +74,7 @@ enum {
     TD_CUT_COPY_PASTE,
     TD_RTM,
     TD_NUM_LHT,
+    TD_AE_SEND,
 };
 
 #ifdef TAP_DANCE_ENABLE
@@ -155,9 +96,26 @@ enum {
 #define LTHMB2 MO(NAV)
 
 enum custom_keycodes {
-    MOD_FIX = SAFE_RANGE, // macro to press/release all modifiers to fix the OS missing a release
-    //NEXTSEN, // ". " and OSM LSFT
+    MOD_FIX = SAFE_RANGE,
     #define YIELD(KEY, SEQUENCE) KEY,
     LEADER_KEY_APP_SEQUENCES(YIELD)
     #undef YIELD
+    // Aerospace direction cluster -- verb determined by mod held at keypress
+    AE_DIR_L, AE_DIR_D, AE_DIR_R, AE_DIR_U,
+    // Aerospace letter mnemonics
+    AE_CLOSE,   // W  -- close window
+    AE_WS_P,    // U  -- workspace prev
+    AE_WS_N,    // O  -- workspace next
+    AE_TGFT,    // P  -- float <-> tile
+    AE_TGAC,    // ;  -- tiles <-> accordion
+    AE_TGRT,    // /  -- horizontal <-> vertical
+    AE_EQLS,    // G  -- balance sizes
+    AE_TRST,    // B  -- reset tree
+    AE_DFSP,    // M  -- dfs-prev
+    AE_FMON,    // H  -- focus-monitor next
+    AE_DFNS,    // .  -- dfs-next
+    AE_BANDF,   // '  -- back-and-forth
+    AE_FULL,    // Enter -- fullscreen
+    // Send mode (tap-dance TD_AE_SEND)
+    AE_SEND, AE_SEND_EMPTY, AE_SEND_FLW,
 };

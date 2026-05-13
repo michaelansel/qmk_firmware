@@ -160,11 +160,18 @@ void num_lht_reset(tap_dance_state_t *state, void *user_data) {
 }
 
 
+static void ae_send_finished(tap_dance_state_t *state, void *user_data) {
+    if      (state->count == 1) aerospace_action(KC_Y);
+    else if (state->count == 2) aerospace_action(S(KC_Y));
+    else                        aerospace_action(G(S(KC_Y)));
+}
+
 tap_dance_action_t tap_dance_actions[] = {
     // [TD_LTHMB] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, lthmb_finished, lthmb_reset),
     [TD_CUT_COPY_PASTE] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, cpy_pst_finished, cpy_pst_reset),
     [TD_RTM] = ACTION_TAP_DANCE_DOUBLE(HS_RTM, G(A(KC_M))),
     [TD_NUM_LHT] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, num_lht_finished, num_lht_reset),
+    [TD_AE_SEND] = ACTION_TAP_DANCE_FN_ADVANCED(NULL, ae_send_finished, NULL),
 };
 
 #endif // TAP_DANCE_ENABLE
